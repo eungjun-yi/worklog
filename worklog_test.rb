@@ -1,7 +1,7 @@
 
 def check_login
   login_cnt = `uptime | grep -E -o "[0-9]+ users" | awk '{print $1}'`
-  return false if login_cnt.eql? "0\n"
+  return false if login_cnt.eql? "0\n" 
   
   sleep_state = `/usr/sbin/ioreg -n IODisplayWrangler | grep -o \\"CurrentPowerState\\"=4`
   puts sleep_state
@@ -11,7 +11,7 @@ def check_login
 end
 
 if __FILE__ == $0
-  if check_login
-    puts `osascript ~/workspace/worklog/worklog.osa`
+  unless check_login
+    puts "Not login"
   end
 end
