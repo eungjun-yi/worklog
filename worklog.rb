@@ -4,7 +4,6 @@ def check_login
   return false if login_cnt.eql? "0\n"
   
   sleep_state = `/usr/sbin/ioreg -n IODisplayWrangler | grep -o \\"CurrentPowerState\\"=4`
-  puts sleep_state
   return false if sleep_state.empty?
 
   return true
